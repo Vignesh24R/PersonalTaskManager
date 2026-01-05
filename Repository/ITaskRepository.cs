@@ -4,13 +4,17 @@ namespace PersonalTaskManager.Repository
 {
     public interface ITaskRepository
     {
-        IEnumerable<TaskItem> GetAllTaskItems();
+        Task<IEnumerable<TaskItem>> GetAllTaskItemsAsync(
+            string? status,
+            string? category,
+            string? search,
+            int pageNumber,
+            int pageSize);
 
-        TaskItem GetTaskItemByTaskId(int id);
+        Task<TaskItem?> GetTaskItemByTaskIdAsync(int id);
 
-        TaskItem AddTaskItem(TaskItem taskItem);
-        bool UpdateTaskItem(TaskItem taskItem);
-        bool DeleteTaskItem(int id);
-        //IEnumerable<TaskItem> GetTaskItemsByUserId(int userId);
+        Task<TaskItem> AddTaskItemAsync(TaskItem taskItem);
+        Task<bool> UpdateTaskItemAsync(TaskItem taskItem);
+        Task<bool> DeleteTaskItemAsync(int id);
     }
 }
