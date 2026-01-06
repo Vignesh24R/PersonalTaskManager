@@ -6,17 +6,15 @@ namespace PersonalTaskManager.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+        [Required , MaxLength(50)]
         public string Username { get; set; }
 
         [Required]
         public string PasswordHash { get; set; }
 
-        [Required]
-        [EmailAddress]
-        [MaxLength(100)]
+        [Required , EmailAddress , MaxLength(100)]
         public string Email { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // Navigation collection
         public ICollection<TaskItem> Tasks { get; set; } = new List<TaskItem>();

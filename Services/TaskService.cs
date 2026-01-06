@@ -13,22 +13,25 @@ namespace PersonalTaskManager.Services
         }
 
         public Task<IEnumerable<TaskItem>> GetAllTaskItemsAsync(
+            int userId,
             string? status,
             string? category,
             string? search,
             int pageNumber,
             int pageSize)
         {
-            return _taskRepository.GetAllTaskItemsAsync(status, category, search, pageNumber, pageSize);
+            return _taskRepository.GetAllTaskItemsAsync(
+                userId, status, category, search, pageNumber, pageSize);
         }
 
-        public Task<TaskItem?> GetTaskItemByTaskIdAsync(int id)
+        public Task<TaskItem?> GetTaskItemByTaskIdAsync(int id, int userId)
         {
-            return _taskRepository.GetTaskItemByTaskIdAsync(id);
+            return _taskRepository.GetTaskItemByTaskIdAsync(id, userId);
         }
 
         public Task<TaskItem> AddTaskItemAsync(TaskItem taskItem)
         {
+            // Could add extra business rules here (e.g., default status)
             return _taskRepository.AddTaskItemAsync(taskItem);
         }
 
@@ -37,9 +40,9 @@ namespace PersonalTaskManager.Services
             return _taskRepository.UpdateTaskItemAsync(taskItem);
         }
 
-        public Task<bool> DeleteTaskItemAsync(int id)
+        public Task<bool> DeleteTaskItemAsync(int id, int userId)
         {
-            return _taskRepository.DeleteTaskItemAsync(id);
+            return _taskRepository.DeleteTaskItemAsync(id, userId);
         }
     }
 }
