@@ -31,7 +31,40 @@ GET {{PersonalTaskManager_HostAddress}}/api/tasks
 
 ###
 
-@id=2
+@id=1
 GET {{PersonalTaskManager_HostAddress}}/api/tasks/{{id}}
+
+###
+
+@status=string
+@category=string
+@search=string
+GET {{PersonalTaskManager_HostAddress}}/api/tasks?status={{status}}&category={{category}}&search={{search}}
+
+###
+
+POST {{PersonalTaskManager_HostAddress}}/api/tasks
+Content-Type: application/json
+
+{
+  //TaskItem
+}
+
+###
+
+DELETE {{PersonalTaskManager_HostAddress}}/api/tasks/{{id}}
+
+###
+
+GET {{PersonalTaskManager_HostAddress}}/api/tasks/{{id}}
+
+###
+
+PUT {{PersonalTaskManager_HostAddress}}/api/tasks/{{id}}
+Content-Type: application/json
+
+{
+  //TaskItem
+}
 
 ###
