@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using PersonalTaskManager.Models;
 using PersonalTaskManager.Repository;
 using PersonalTaskManager.Services;
 
@@ -9,8 +11,13 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddSingleton<ITaskRepository, InMemoryTaskRepository>();
-builder.Services.AddSingleton<ITaskService, TaskService>();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultDbConnection"))
+);
+
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 var app = builder.Build();
 

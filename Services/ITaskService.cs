@@ -4,12 +4,16 @@ namespace PersonalTaskManager.Services
 {
     public interface ITaskService
     {
-        IEnumerable<TaskItem> GetAllTaskItems();
+        Task<IEnumerable<TaskItem>> GetAllTaskItemsAsync(
+            string? status,
+            string? category,
+            string? search,
+            int pageNumber,
+            int pageSize);
 
-        TaskItem GetTaskItemByTaskId(int id);
-
-        TaskItem AddTaskItem(TaskItem taskItem);
-        bool UpdateTaskItem(TaskItem taskItem);
-        bool DeleteTaskItem(int id);
+        Task<TaskItem?> GetTaskItemByTaskIdAsync(int id);
+        Task<TaskItem> AddTaskItemAsync(TaskItem taskItem);
+        Task<bool> UpdateTaskItemAsync(TaskItem taskItem);
+        Task<bool> DeleteTaskItemAsync(int id);
     }
 }

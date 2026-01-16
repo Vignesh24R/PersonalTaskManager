@@ -2,7 +2,7 @@
 
 namespace PersonalTaskManager.Repository
 {
-    public class InMemoryTaskRepository : ITaskRepository
+    public class InMemoryTaskRepository 
     {
         private readonly List<TaskItem> _taskItems = new();
         private int _nextId = 1;
